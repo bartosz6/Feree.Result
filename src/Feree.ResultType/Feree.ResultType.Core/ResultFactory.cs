@@ -2,12 +2,12 @@
 {
     public static class ResultFactory
     {
-        public static Success<T> CreateSuccess<T>(T payload) => new Success<T>(payload);
-        public static Success<Empty> CreateSuccess() => new Success<Empty>(new Empty());
+        public static IResult<T> CreateSuccess<T>(T payload) => new Success<T>(payload);
+        public static IResult CreateSuccess() => new Success();
         
-        public static Failure<T> CreateFailure<T>(IError error) => new Failure<T>(error);
-        public static Failure<T> CreateFailure<T>(string message) => new Failure<T>(new Error(message));
-        public static Failure<Empty> CreateFailure(IError error) => new Failure<Empty>(error);
-        public static Failure<Empty> CreateFailure(string message) => new Failure<Empty>(new Error(message));
+        public static IResult<T> CreateFailure<T>(IError error) => new Failure<T>(error);
+        public static IResult<T> CreateFailure<T>(string message) => new Failure<T>(new Error(message));
+        public static IResult CreateFailure(IError error) => new Failure(error);
+        public static IResult CreateFailure(string message) => new Failure(new Error(message));
     }
 }

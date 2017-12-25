@@ -3,16 +3,8 @@ using NUnit.Framework;
 
 namespace Feree.ResultType.Tests
 {
-    public class UnitTest1
+    public class BindTests
     {
-        [Test]
-        public void Success_GivenObject_ShouldKeepItAsPayload()
-        {
-            var success = ResultFactory.CreateSuccess("string");
-
-            Assert.That(success.Payload, Is.EqualTo("string"));
-        }
-        
         [Test]
         public void Bind_GivenSuccess_CallsNextFunction()
         {
