@@ -4,7 +4,7 @@ namespace Feree.ResultType
 {
     public class Failure<T> : IResult<T>
     {
-        public Failure(IError error)
+        internal Failure(IError error)
         {
             Error = error ?? throw new ArgumentNullException(nameof(error));
         }
@@ -14,7 +14,7 @@ namespace Feree.ResultType
 
     public class Failure : Failure<Empty>, IResult
     {
-        public Failure(IError error) : base(error)
+        internal Failure(IError error) : base(error)
         {
         }
     }
