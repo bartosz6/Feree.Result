@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feree.ResultType.Core", "Feree.ResultType.Core/Feree.ResultType.Core.csproj", "{0497D843-FA34-437F-AD6A-CA43BDD73D61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feree.ResultType", "Feree.ResultType/Feree.ResultType.csproj", "{0497D843-FA34-437F-AD6A-CA43BDD73D61}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feree.ResultType.Tests", "Feree.ResultType.Tests\Feree.ResultType.Tests.csproj", "{662F762A-221B-419B-86D6-C26E942855E1}"
 EndProject

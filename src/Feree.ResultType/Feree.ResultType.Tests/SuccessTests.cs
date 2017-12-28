@@ -1,5 +1,5 @@
 ﻿using System;
-using Feree.ResultType.Core;
+using Feree.ResultType;
 using Feree.ResultType.Tests.Helpers;
 using NUnit.Framework;
 

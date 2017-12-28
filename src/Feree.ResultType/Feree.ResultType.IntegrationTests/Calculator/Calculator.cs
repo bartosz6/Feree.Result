@@ -1,4 +1,4 @@
-﻿using Feree.ResultType.Core;
+﻿using Feree.ResultType;
 
 namespace Feree.ResultType.IntegrationTests.Calculator
 {

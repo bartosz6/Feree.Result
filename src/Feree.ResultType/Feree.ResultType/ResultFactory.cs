@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Feree.ResultType.Core
+namespace Feree.ResultType
 {
     public static class ResultFactory
     {

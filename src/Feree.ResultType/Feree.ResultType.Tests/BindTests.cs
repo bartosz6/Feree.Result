@@ -1,4 +1,4 @@
-using Feree.ResultType.Core;
+using Feree.ResultType;
 using NUnit.Framework;
 
 namespace Feree.ResultType.Tests

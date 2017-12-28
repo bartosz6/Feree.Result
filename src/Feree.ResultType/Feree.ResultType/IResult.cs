@@ -1,4 +1,4 @@
-﻿namespace Feree.ResultType.Core
+﻿namespace Feree.ResultType
 {
     public interface IResult<T>
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Feree.ResultType.Core
+namespace Feree.ResultType
 {
     public class Failure<T> : IResult<T>
     {
