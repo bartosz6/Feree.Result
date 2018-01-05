@@ -1,0 +1,46 @@
+version: 1
+jobs:
+  build:
+    working_directory: ~/build
+    docker:
+      - image: microsoft/dotnet:sdk
+    steps:
+      - checkout
+      - run:
+          name: Build solution
+          command: dotnet build src
+      - persist_to_workspace:
+          root: .
+          paths: 
+            - src/*
+  unit tests:
+    working_directory: ~/build
+    docker:
+      - image: microsoft/dotnet:sdk
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Tests
+          command: dotnet test -v normal --no-build src/Feree.ResultType.Tests/
+  integration tests:
+    working_directory: ~/build
+    docker:
+      - image: microsoft/dotnet:sdk
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Tests
+          command: dotnet test -v normal --no-build src/Feree.ResultType.IntegrationTests/
+workflows:
+  version: 1
+  build_and_test:
+    jobs:
+      - build
+      - unit tests:
+          requires:
+            - build
+      - integration tests:
+          requires:
+            - build
