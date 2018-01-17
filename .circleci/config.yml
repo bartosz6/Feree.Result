@@ -40,7 +40,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run
+      - run:
           name: Copy to lib
           command: mkdir src/lib && cp src/Feree.ResultType/bin/Release/netstandard2.0/Feree.ResultType.dll src/lib/
       - run:
