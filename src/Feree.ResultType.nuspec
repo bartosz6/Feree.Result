@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Feree.ResultType</id>
+    <version>1.0.0</version>
+    <title>Result Type</title>
+    <authors>Feree</authors>
+    <owners>Feree</owners>
+    <licenseUrl>https://github.com/bartosz6/Feree.Result/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/bartosz6/Feree.Result</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Implementation of result type based on pattern matching</description>
+    <releaseNotes>Init</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Railway Result ResultType Feree</tags>
+  </metadata>
+</package>
