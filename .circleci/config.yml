@@ -57,3 +57,7 @@ workflows:
       - integration tests:
           requires:
             - build
+      - nuget:
+          requires:
+            - unit tests
+            - integration tests
