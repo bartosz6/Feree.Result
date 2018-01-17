@@ -39,7 +39,7 @@ jobs:
       - image: mono:latest
     steps:
       - attach_workspace:
-          at: ./src
+          at: src
       - run:
           name: Copy to lib
           command: mkdir lib && cp Feree.ResultType/bin/Release/netstandard2.0/Feree.ResultType.dll lib/
