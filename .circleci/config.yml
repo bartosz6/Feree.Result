@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Build solution
-          command: dotnet build src
+          command: dotnet build --configuration Release src
       - persist_to_workspace:
           root: .
           paths: 
@@ -33,6 +33,19 @@ jobs:
       - run:
           name: Tests
           command: dotnet test -v normal --no-build src/Feree.ResultType.IntegrationTests/
+  nuget:
+    working_directory: ~/build
+    docker:
+      - image: mono:latest
+    steps:
+      - attach_workspace:
+          at: .
+      - run
+          name: Copy to lib
+          command: mkdir src/lib && cp src/Feree.ResultType/bin/Release/netstandard2.0/Feree.ResultType.dll src/lib/
+      - run:
+          name: Pack
+          command: nuget pack src/Feree.ResultType.nuspec -properties Configuration=Release
 workflows:
   version: 1
   build_and_test:
