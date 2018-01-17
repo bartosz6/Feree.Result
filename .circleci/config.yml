@@ -45,7 +45,7 @@ jobs:
           command: mkdir src/lib && cp src/Feree.ResultType/bin/Release/netstandard2.0/Feree.ResultType.dll src/lib/
       - run:
           name: Pack
-          command: nuget pack src/Feree.ResultType.nuspec -properties Configuration=Release
+          command: ls -laR && nuget pack src/Feree.ResultType.nuspec -properties Configuration=Release
 workflows:
   version: 1
   build_and_test:
