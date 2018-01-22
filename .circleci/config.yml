@@ -42,10 +42,10 @@ jobs:
           at: .
       - run:
           name: Copy to lib
-          command: cd src && mkdir lib && cp Feree.ResultType/bin/Release/netstandard2.0/Feree.ResultType.dll lib/
+          command: mkdir package/lib && cp src/Feree.ResultType/bin/Release/netstandard2.0/Feree.ResultType.dll package/lib/
       - run:
           name: Pack
-          command: ls -laR && nuget pack Feree.ResultType.nuspec -properties Configuration=Release
+          command: nuget pack package/Feree.ResultType.nuspec -properties Configuration=Release
 workflows:
   version: 1
   build_and_test:

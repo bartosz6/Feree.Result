@@ -14,4 +14,7 @@
     <copyright>Copyright 2018</copyright>
     <tags>Railway Result ResultType Feree</tags>
   </metadata>
+  <files>
+    <file src="lib\Feree.ResultType.dll" target="lib" />
+  </files>
 </package>
