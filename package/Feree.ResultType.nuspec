@@ -15,6 +15,6 @@
     <tags>Railway Result ResultType Feree</tags>
   </metadata>
   <files>
-    <file src="package\lib\Feree.ResultType.dll" target="lib" />
+    <file src="./lib/Feree.ResultType.dll" target="lib" />
   </files>
 </package>
