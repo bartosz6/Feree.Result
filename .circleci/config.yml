@@ -34,9 +34,6 @@ jobs:
           name: Tests
           command: dotnet test -v normal --configuration Release --no-build src/Feree.ResultType.IntegrationTests/
   nuget:
-    branches:
-      only:
-        - deploy
     working_directory: ~/build
     docker:
       - image: mono:latest
@@ -61,6 +58,9 @@ workflows:
           requires:
             - build
       - nuget:
+          filters:
+            branches:
+              only: deploy
           requires:
             - unit tests
             - integration tests
