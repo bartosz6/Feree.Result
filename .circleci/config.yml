@@ -63,4 +63,5 @@ workflows:
             - integration tests
           filters:
             branches:
-              only: deploy
+              only: 
+                - deploy
