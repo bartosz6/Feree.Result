@@ -41,9 +41,6 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: Copy to lib
-          command: mkdir package/lib && cp src/Feree.ResultType/bin/Release/netstandard2.0/Feree.ResultType.dll package/lib/
-      - run:
           name: Pack
           command: nuget pack package/Feree.ResultType.nuspec -properties Configuration=Release
 workflows:
