@@ -1,4 +1,4 @@
-version: 1
+version: 2
 jobs:
   build:
     working_directory: ~/build
@@ -58,10 +58,9 @@ workflows:
           requires:
             - build
       - nuget:
+          filters:
+            branches:
+              only: deploy
           requires:
             - unit tests
             - integration tests
-          filters:
-            branches:
-              only: 
-                - deploy
