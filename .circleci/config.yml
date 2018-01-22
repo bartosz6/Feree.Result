@@ -41,6 +41,9 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          name: Update nuget
+          command: nuget update -self
+      - run:
           name: Pack
           command: nuget pack package/Feree.ResultType.nuspec -properties Configuration=Release
 workflows:
@@ -55,6 +58,9 @@ workflows:
           requires:
             - build
       - nuget:
+          branches:
+            only:
+              - deploy
           requires:
             - unit tests
             - integration tests
