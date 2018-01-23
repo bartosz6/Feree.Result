@@ -44,16 +44,13 @@ jobs:
           name: Update nuget
           command: nuget update -self
       - run:
-          name: Versioning
+          name: Install git
+          command: apt-get update && apt-get install -y git
+      - run:
+          name: Pack and publish
           command: |
-            apt-get update && apt-get install -y git
             version=$(git tag --list | sort -Vr | head -1)
-      - run:
-          name: Pack
-          command: nuget pack package/Feree.ResultType.nuspec -properties Configuration=Release -Version $version
-      - run:
-          name: Publish
-          command: |
+            nuget pack package/Feree.ResultType.nuspec -properties Configuration=Release -Version $version
             nuget setApiKey $nugetApiKey
             nuget push Feree.ResultType.$version.nupkg -Source https://api.nuget.org/v3/index.json
 workflows:
