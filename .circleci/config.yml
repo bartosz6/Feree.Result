@@ -44,8 +44,11 @@ jobs:
           name: Update nuget
           command: nuget update -self
       - run:
+          name: Versioning
+          command: echo $CIRCLE_TAG
+      - run:
           name: Pack
-          command: nuget pack package/Feree.ResultType.nuspec -properties Configuration=Release
+          command: nuget pack package/Feree.ResultType.nuspec -properties Configuration=Release -Version "1.0.0-beta1"
 workflows:
   version: 2
   build_and_test:
@@ -60,7 +63,9 @@ workflows:
       - nuget:
           filters:
             branches:
-              only: deploy
+              ignore: /.*/
+            tags:
+              only: /.*/
           requires:
             - unit tests
             - integration tests

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Feree.ResultType</id>
-    <version>1.0.0</version>
+    <version>$version$</version>
     <title>Result Type</title>
     <authors>Feree</authors>
     <owners>Feree</owners>
