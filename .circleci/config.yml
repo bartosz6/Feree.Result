@@ -62,8 +62,6 @@ workflows:
             - build
       - nuget:
           filters:
-            branches:
-              ignore: /.*/
             tags:
               only: /.*/
           requires:
