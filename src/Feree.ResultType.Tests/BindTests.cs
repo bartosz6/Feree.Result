@@ -4,6 +4,7 @@ using Feree.ResultType.Factories;
 using Feree.ResultType.Operations;
 using Feree.ResultType.Results;
 using Feree.ResultType.Tests.Helpers;
+using Feree.ResultType.Unit;
 using Moq;
 using NUnit.Framework;
 
@@ -54,7 +55,7 @@ namespace Feree.ResultType.Tests
 
             var result = success.Bind(() => failure);
 
-            Assert.That(result is Failure, Is.True);
+            Assert.That(result is Failure<Empty>, Is.True);
         }
 
         [Test]

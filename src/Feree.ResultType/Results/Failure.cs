@@ -1,23 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using Feree.ResultType.Errors;
-using Feree.ResultType.Unit;
 
 namespace Feree.ResultType.Results
 {
-    public class Failure<T> : IResult<T>
+    public struct Failure<T> : IResult<T>, IEquatable<IResult<T>>, IEqualityComparer<IResult<T>>
     {
-        internal Failure(IError error)
+        public Failure(IError error)
         {
             Error = error ?? throw new ArgumentNullException(nameof(error));
         }
 
         public IError Error { get; }
-    }
 
-    public class Failure : Failure<Empty>
-    {
-        internal Failure(IError error) : base(error)
-        {
-        }
+        public bool Equals(IResult<T> other) => Equals(this, other);
+        
+        public bool Equals(IResult<T> x, IResult<T> y) => 
+            x is Failure<T> failureX && y is Failure<T> failureY && failureX.Error.Equals(failureY.Error);
+
+        public int GetHashCode(IResult<T> obj) => obj is Failure<T> failure ? failure.Error.GetHashCode() : 0;
     }
 }
