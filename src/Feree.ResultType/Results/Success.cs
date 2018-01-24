@@ -1,6 +1,7 @@
 ﻿using System;
+using Feree.ResultType.Unit;
 
-namespace Feree.ResultType
+namespace Feree.ResultType.Results
 {
     public class Success<T> : IResult<T>
     {
@@ -12,7 +13,7 @@ namespace Feree.ResultType
         public T Payload { get; }
     }
 
-    public class Success : Success<Empty>, IResult
+    public class Success : Success<Empty>
     {
         internal Success() : base(new Empty())
         {

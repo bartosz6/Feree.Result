@@ -1,6 +1,9 @@
 ﻿using System.Threading.Tasks;
+using Feree.ResultType.Errors;
+using Feree.ResultType.Results;
+using Feree.ResultType.Unit;
 
-namespace Feree.ResultType
+namespace Feree.ResultType.Factories
 {
     public static class ResultFactory
     {

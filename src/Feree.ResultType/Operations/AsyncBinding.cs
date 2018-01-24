@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Feree.ResultType.Results;
 
-namespace Feree.ResultType
+namespace Feree.ResultType.Operations
 {
     public static class AsyncBinding
     {

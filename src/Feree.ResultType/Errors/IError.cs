@@ -1,4 +1,4 @@
-﻿namespace Feree.ResultType
+﻿namespace Feree.ResultType.Errors
 {
     public interface IError
     {

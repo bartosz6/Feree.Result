@@ -1,4 +1,8 @@
 using System.Threading.Tasks;
+using Feree.ResultType.Converters;
+using Feree.ResultType.Factories;
+using Feree.ResultType.Operations;
+using Feree.ResultType.Results;
 using Feree.ResultType.Tests.Helpers;
 using Moq;
 using NUnit.Framework;

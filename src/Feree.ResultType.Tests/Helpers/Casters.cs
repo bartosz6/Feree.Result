@@ -1,4 +1,4 @@
-﻿using Feree.ResultType;
+﻿using Feree.ResultType.Results;
 
 namespace Feree.ResultType.Tests.Helpers
 {

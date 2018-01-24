@@ -1,4 +1,7 @@
 using System.Threading.Tasks;
+using Feree.ResultType.Converters;
+using Feree.ResultType.Results;
+using Feree.ResultType.Unit;
 
 namespace Feree.ResultType.Tests
 {

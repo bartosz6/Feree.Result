@@ -1,6 +1,7 @@
 ﻿using System;
+using Feree.ResultType.Results;
 
-namespace Feree.ResultType
+namespace Feree.ResultType.Operations
 {
     public static class Binding
     {

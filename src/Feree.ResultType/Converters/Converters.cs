@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
+using Feree.ResultType.Factories;
+using Feree.ResultType.Results;
 
-namespace Feree.ResultType
+namespace Feree.ResultType.Converters
 {
     public static class Converters
     {

@@ -1,6 +1,8 @@
 ﻿using System;
+using Feree.ResultType.Errors;
+using Feree.ResultType.Unit;
 
-namespace Feree.ResultType
+namespace Feree.ResultType.Results
 {
     public class Failure<T> : IResult<T>
     {
@@ -12,7 +14,7 @@ namespace Feree.ResultType
         public IError Error { get; }
     }
 
-    public class Failure : Failure<Empty>, IResult
+    public class Failure : Failure<Empty>
     {
         internal Failure(IError error) : base(error)
         {

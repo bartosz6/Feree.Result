@@ -1,4 +1,7 @@
-﻿using Feree.ResultType;
+﻿using System;
+using Feree.ResultType.Factories;
+using Feree.ResultType.Operations;
+using Feree.ResultType.Results;
 
 namespace Feree.ResultType.IntegrationTests.Calculator
 {
@@ -18,7 +21,7 @@ namespace Feree.ResultType.IntegrationTests.Calculator
         public IResult<double> Multiply(double multiplicand, double multiplier) =>
             ResultFactory.CreateSuccess(multiplicand * multiplier);
 
-        public IResult<double> Divide(double dividend, double divisor) => divisor == 0
+        public IResult<double> Divide(double dividend, double divisor) => Math.Abs(divisor) <= uint.MinValue
             ? ResultFactory.CreateFailure<double>("division by zero")
             : ResultFactory.CreateSuccess(dividend / divisor);
 

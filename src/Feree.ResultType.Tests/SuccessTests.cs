@@ -1,6 +1,7 @@
 ﻿using System;
-using Feree.ResultType;
+using Feree.ResultType.Factories;
 using Feree.ResultType.Tests.Helpers;
+using Feree.ResultType.Unit;
 using NUnit.Framework;
 
 namespace Feree.ResultType.Tests
