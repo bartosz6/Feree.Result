@@ -17,10 +17,7 @@ namespace Feree.ResultType.Tests
             var message = "an error occured";
             var failure = (Failure<Empty>) ResultFactory.CreateFailure(message);
             
-            Assert.That(((Error)failure.Error).Message, Is.EqualTo(message));
-            Assert.That(((Error)failure.Error).SourceLineNumber, Is.EqualTo(18));
-            Assert.That(((Error)failure.Error).SourceFilePath, Contains.Substring(CurrentFileName));
-            Assert.That(((Error)failure.Error).MemberName, Is.EqualTo(nameof(CreateFailure_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled)));
+            AssertFieldsAreFilled(failure, message, 18, nameof(CreateFailure_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled));
         }
         
         [Test]
@@ -29,10 +26,7 @@ namespace Feree.ResultType.Tests
             var message = "an error occured";
             var failure = (Failure<int>) ResultFactory.CreateFailure<int>(message);
             
-            Assert.That(((Error)failure.Error).Message, Is.EqualTo(message));
-            Assert.That(((Error)failure.Error).SourceLineNumber, Is.EqualTo(30));
-            Assert.That(((Error)failure.Error).SourceFilePath, Contains.Substring(CurrentFileName));
-            Assert.That(((Error)failure.Error).MemberName, Is.EqualTo(nameof(CreateFailureOfT_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled)));
+            AssertFieldsAreFilled(failure, message, 27, nameof(CreateFailureOfT_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled));
         }
         
         [Test]
@@ -41,10 +35,7 @@ namespace Feree.ResultType.Tests
             var message = "an error occured";
             var failure = (Failure<Empty>) await ResultFactory.CreateFailure(Task.Factory.StartNew(() => message));
             
-            Assert.That(((Error)failure.Error).Message, Is.EqualTo(message));
-            Assert.That(((Error)failure.Error).SourceLineNumber, Is.EqualTo(42));
-            Assert.That(((Error)failure.Error).SourceFilePath, Contains.Substring(CurrentFileName));
-            Assert.That(((Error)failure.Error).MemberName, Is.EqualTo(nameof(CreateFailureAsync_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled)));
+            AssertFieldsAreFilled(failure, message, 36, nameof(CreateFailureAsync_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled));
         }
         
         [Test]
@@ -53,10 +44,15 @@ namespace Feree.ResultType.Tests
             var message = "an error occured";
             var failure = (Failure<int>) await ResultFactory.CreateFailure<int>(Task.Factory.StartNew(() => message));
             
-            Assert.That(((Error)failure.Error).Message, Is.EqualTo(message));
-            Assert.That(((Error)failure.Error).SourceLineNumber, Is.EqualTo(54));
-            Assert.That(((Error)failure.Error).SourceFilePath, Contains.Substring(CurrentFileName));
-            Assert.That(((Error)failure.Error).MemberName, Is.EqualTo(nameof(CreateFailureOfTAsync_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled)));
+            AssertFieldsAreFilled(failure, message, 45, nameof(CreateFailureOfTAsync_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled));
+        }
+
+        private void AssertFieldsAreFilled<T>(Failure<T> failure, string message, int line, string methodName)
+        {
+            Assert.That(((Error) failure.Error).Message, Is.EqualTo(message));
+            Assert.That(((Error) failure.Error).SourceLineNumber, Is.EqualTo(line));
+            Assert.That(((Error) failure.Error).SourceFilePath, Contains.Substring(CurrentFileName));
+            Assert.That(((Error) failure.Error).MemberName, Is.EqualTo(methodName));
         }
     }
 }

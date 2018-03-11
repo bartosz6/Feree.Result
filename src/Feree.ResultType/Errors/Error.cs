@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 
 namespace Feree.ResultType.Errors
 {
@@ -22,5 +23,7 @@ namespace Feree.ResultType.Errors
         public int SourceLineNumber { get; }
 
         public string Message { get; }
+
+        public override string ToString() => JsonConvert.SerializeObject(this);
     }
 }
