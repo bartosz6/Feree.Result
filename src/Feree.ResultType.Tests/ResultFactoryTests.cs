@@ -3,7 +3,6 @@ using Feree.ResultType.Errors;
 using Feree.ResultType.Factories;
 using Feree.ResultType.Results;
 using Feree.ResultType.Tests.Helpers;
-using Feree.ResultType.Unit;
 using NUnit.Framework;
 
 namespace Feree.ResultType.Tests
@@ -18,7 +17,7 @@ namespace Feree.ResultType.Tests
         {
             var failure = ResultFactory.CreateFailure(Message).AsFailure();
             
-            AssertFieldsAreFilled(failure, Message, 19, nameof(CreateFailure_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled));
+            AssertFieldsAreFilled(failure, Message, 18, nameof(CreateFailure_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled));
         }
         
         [Test]
@@ -26,26 +25,10 @@ namespace Feree.ResultType.Tests
         {
             var failure = ResultFactory.CreateFailure<int>(Message).AsFailure();
             
-            AssertFieldsAreFilled(failure, Message, 27, nameof(CreateFailureOfT_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled));
-        }
-        
-        [Test]
-        public async Task CreateFailureAsync_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled()
-        {
-            var failure = (await ResultFactory.CreateFailure(Task.Factory.StartNew(() => Message))).AsFailure();
-            
-            AssertFieldsAreFilled(failure, Message, 35, nameof(CreateFailureAsync_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled));
-        }
-        
-        [Test]
-        public async Task CreateFailureOfTAsync_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled()
-        {
-            var failure = (await ResultFactory.CreateFailure<int>(Task.Factory.StartNew(() => Message))).AsFailure();
-            
-            AssertFieldsAreFilled(failure, Message, 43, nameof(CreateFailureOfTAsync_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled));
+            AssertFieldsAreFilled(failure, Message, 26, nameof(CreateFailureOfT_GivenMessage_ReturnsFailureThatContainsErrorWithFieldsFilled));
         }
 
-        private void AssertFieldsAreFilled<T>(Failure<T> failure, string message, int line, string methodName)
+        private void AssertFieldsAreFilled(Failure failure, string message, int line, string methodName)
         {
             Assert.That(((Error) failure.Error).Message, Is.EqualTo(message));
             Assert.That(((Error) failure.Error).SourceLineNumber, Is.EqualTo(line));

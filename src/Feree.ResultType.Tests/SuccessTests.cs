@@ -1,7 +1,6 @@
 ﻿using System;
 using Feree.ResultType.Factories;
 using Feree.ResultType.Tests.Helpers;
-using Feree.ResultType.Unit;
 using NUnit.Framework;
 
 namespace Feree.ResultType.Tests
@@ -21,14 +20,6 @@ namespace Feree.ResultType.Tests
         public void Success_GivenNull_ShouldThrowException()
         {
             Assert.Throws<ArgumentNullException>(() => ResultFactory.CreateSuccess<object>(null));
-        }
-        
-        [Test]
-        public void Success_ShouldContainEmpty()
-        {
-            var success = ResultFactory.CreateSuccess().AsSuccess();
-            
-            Assert.That(success.Payload, Is.EqualTo(new Empty()));
         }
     }
 }

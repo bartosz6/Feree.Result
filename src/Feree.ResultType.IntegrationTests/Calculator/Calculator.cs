@@ -1,6 +1,5 @@
 ﻿using System;
 using Feree.ResultType.Factories;
-using Feree.ResultType.Operations;
 using Feree.ResultType.Results;
 
 namespace Feree.ResultType.IntegrationTests.Calculator
