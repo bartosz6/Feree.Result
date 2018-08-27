@@ -1,4 +1,4 @@
-﻿using Feree.ResultType;
+﻿using Feree.ResultType.Results;
 using NUnit.Framework;
 
 namespace Feree.ResultType.IntegrationTests.Calculator

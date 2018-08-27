@@ -1,4 +1,7 @@
 using System.Threading.Tasks;
+using Feree.ResultType.Converters;
+using Feree.ResultType.Factories;
+using Feree.ResultType.Results;
 using Feree.ResultType.Tests.Helpers;
 using Moq;
 using NUnit.Framework;
@@ -51,6 +54,7 @@ namespace Feree.ResultType.Tests
             var result = success.Bind(() => failure);
 
             Assert.That(result is Failure, Is.True);
+           // Assert.That(result is Failure<Unit>, Is.True);
         }
 
         [Test]

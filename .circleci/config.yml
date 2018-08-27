@@ -22,7 +22,7 @@ jobs:
           at: .
       - run:
           name: Tests
-          command: dotnet test -v normal --configuration Release --no-build src/Feree.ResultType.Tests/
+          command: dotnet test -v normal --configuration Release -f netcoreapp2.1 src/Feree.ResultType.Tests/
   integration tests:
     working_directory: ~/build
     docker:
@@ -32,7 +32,7 @@ jobs:
           at: .
       - run:
           name: Tests
-          command: dotnet test -v normal --configuration Release --no-build src/Feree.ResultType.IntegrationTests/
+          command: dotnet test -v normal --configuration Release -f netcoreapp2.1 src/Feree.ResultType.IntegrationTests/
   nuget:
     working_directory: ~/build
     docker:
