@@ -31,7 +31,7 @@ namespace Feree.ResultType.Results
         public Task<IResult<TNext>> BindAsync<TNext>(Func<T, Task<IResult<TNext>>> next) => next(Payload);
     }
 
-    public class Success : IResult<Unit>
+    public abstract class Success : IResult<Unit>
     {
         public IResult<TNext> Bind<TNext>(Func<Unit, IResult<TNext>> next) => next(new Unit());
 
@@ -53,7 +53,7 @@ namespace Feree.ResultType.Results
             Task.FromResult<IResult<TNext>>(new Failure<TNext>(Error));
     }
 
-    public class Failure : IResult<Unit>
+    public abstract class Failure : IResult<Unit>
     {
         public IError Error { get; }
 

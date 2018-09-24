@@ -13,13 +13,13 @@ namespace Feree.ResultType.Factories
             new Success<T>(payload);
         
         public static IResult<Unit> CreateSuccess() => 
-            new Success();
+            new Success<Unit>(new Unit());
         
         public static IResult<T> CreateFailure<T>(IError error) => 
             new Failure<T>(error);
         
         public static IResult<Unit> CreateFailure(IError error) => 
-            new Failure(error);
+            new Failure<Unit>(error);
 
         public static IResult<T> CreateFailure<T>(string message,
             [CallerMemberName] string memberName = "",
@@ -31,6 +31,6 @@ namespace Feree.ResultType.Factories
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0) =>
-            new Failure(new Error(message, memberName, sourceFilePath, sourceLineNumber));
+            new Failure<Unit>(new Error(message, memberName, sourceFilePath, sourceLineNumber));
     }
 }
