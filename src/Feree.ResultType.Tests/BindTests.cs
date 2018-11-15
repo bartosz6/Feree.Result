@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Feree.ResultType.Converters;
+using Feree.ResultType.Extensions;
 using Feree.ResultType.Factories;
 using Feree.ResultType.Results;
 using Feree.ResultType.Tests.Helpers;
@@ -17,7 +18,7 @@ namespace Feree.ResultType.Tests
             var mock = new Mock<TestClass>();
             var success = ResultFactory.CreateSuccess();
 
-            var result = success.Bind(() => mock.Object.TestMethod());
+            success.Bind(() => mock.Object.TestMethod());
 
             mock.Verify(a => a.TestMethod(), Times.Once);
         }
@@ -28,7 +29,7 @@ namespace Feree.ResultType.Tests
             var mock = new Mock<TestClass>();
             var success = ResultFactory.CreateSuccess(5);
 
-            var result = success.Bind(mock.Object.TestMethod<int>);
+            success.Bind(mock.Object.TestMethod);
 
             mock.Verify(a => a.TestMethod(5), Times.Once);
         }
@@ -54,7 +55,6 @@ namespace Feree.ResultType.Tests
             var result = success.Bind(() => failure);
 
             Assert.That(result is Failure, Is.True);
-           // Assert.That(result is Failure<Unit>, Is.True);
         }
 
         [Test]
@@ -74,40 +74,40 @@ namespace Feree.ResultType.Tests
             var mock = new Mock<TestClass>();
             var success = ResultFactory.CreateFailure("error message");
 
-            var result = success.Bind(() => mock.Object.TestMethod());
+            success.Bind(() => mock.Object.TestMethod());
 
             mock.Verify(a => a.TestMethod(), Times.Never);
         }
 
         [Test]
-        public void BindAsync_GivenTaskOfSuccess_CallsNextFunction()
+        public async Task BindAsync_GivenTaskOfSuccess_CallsNextFunction()
         {
             var mock = new Mock<TestClass>();
             var success = new TaskFactory().StartNew(() => 123).AsResultAsync();
 
-            var result = success.BindAsync(() => mock.Object.TestMethod());
+            await success.BindAsync(() => mock.Object.TestMethod());
 
             mock.Verify(a => a.TestMethod(), Times.Once);
         }
 
         [Test]
-        public void BindAsync_GivenTaskOfSuccess_CallsNextFunctionThatReturnsTask()
+        public async Task BindAsync_GivenTaskOfSuccess_CallsNextFunctionThatReturnsTask()
         {
             var mock = new Mock<TestClass>();
             var success = new TaskFactory().StartNew(() => 123).AsResultAsync();
 
-            var result = success.BindAsync(() => mock.Object.TestMethodAsync());
+            await success.BindAsync(() => mock.Object.TestMethodAsync());
 
             mock.Verify(a => a.TestMethodAsync(), Times.Once);
         }
 
         [Test]
-        public void BindAsync_GivenSuccess_CallsNextFunctionThatReturnsTask()
+        public async Task BindAsync_GivenSuccess_CallsNextFunctionThatReturnsTask()
         {
             var mock = new Mock<TestClass>();
             var success = 123.AsResult();
 
-            var result = success.BindAsync(() => mock.Object.TestMethodAsync());
+            await success.BindAsync(() => mock.Object.TestMethodAsync());
 
             mock.Verify(a => a.TestMethodAsync(), Times.Once);
         }
@@ -118,29 +118,29 @@ namespace Feree.ResultType.Tests
             var mock = new Mock<TestClass>();
             var failure = new TaskFactory().StartNew(() => ResultFactory.CreateFailure("error"));
 
-            var result = await failure.BindAsync(() => mock.Object.TestMethodAsync());
+            await failure.BindAsync(() => mock.Object.TestMethodAsync());
 
             mock.Verify(a => a.TestMethodAsync(), Times.Never);
         }
 
         [Test]
-        public void BindAsync_GivenTaskOfFailure_DoesNotCallFunctionThatReturnsTask()
+        public async Task BindAsync_GivenTaskOfFailure_DoesNotCallFunctionThatReturnsTask()
         {
             var mock = new Mock<TestClass>();
             var failure = new TaskFactory().StartNew(() => ResultFactory.CreateFailure("error"));
 
-            var result = failure.BindAsync(() => mock.Object.TestMethodAsync());
+            await failure.BindAsync(() => mock.Object.TestMethodAsync());
 
             mock.Verify(a => a.TestMethodAsync(), Times.Never);
         }
 
         [Test]
-        public void BindAsync_GivenFailure_DoesNotCallFunctionThatReturnsTask()
+        public async Task BindAsync_GivenFailure_DoesNotCallFunctionThatReturnsTask()
         {
             var mock = new Mock<TestClass>();
             var failure = ResultFactory.CreateFailure("error");
 
-            var result = failure.BindAsync(() => mock.Object.TestMethodAsync());
+            await failure.BindAsync(() => mock.Object.TestMethodAsync());
 
             mock.Verify(a => a.TestMethodAsync(), Times.Never);
         }

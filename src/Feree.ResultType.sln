@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feree.ResultType.Tests", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feree.ResultType.IntegrationTests", "Feree.ResultType.IntegrationTests\Feree.ResultType.IntegrationTests.csproj", "{459D5238-C40C-4E1B-94EA-7025B8DAA0D4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{80531D6E-3E30-4D31-83A9-BEDBDD8994A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{482E958F-B718-40D7-9001-79AE46165E7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0497D843-FA34-437F-AD6A-CA43BDD73D61} = {80531D6E-3E30-4D31-83A9-BEDBDD8994A7}
+		{459D5238-C40C-4E1B-94EA-7025B8DAA0D4} = {482E958F-B718-40D7-9001-79AE46165E7D}
+		{662F762A-221B-419B-86D6-C26E942855E1} = {482E958F-B718-40D7-9001-79AE46165E7D}
 	EndGlobalSection
 EndGlobal

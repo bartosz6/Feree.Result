@@ -22,7 +22,7 @@ namespace Feree.ResultType.Tests
         [Test]
         public void Failure_GivenNull_ShouldThrowException()
         {
-            Assert.Throws<ArgumentNullException>(() => ResultFactory.CreateFailure(null as IError));
+            Assert.Throws<ArgumentNullException>(() => ResultFactory.CreateFailure(null));
         }
     }
 }

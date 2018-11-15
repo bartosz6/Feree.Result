@@ -11,7 +11,7 @@ namespace Feree.ResultType
         
         public bool Equals(Unit other) => Equals(this, other);
 
-        public override bool Equals(object obj) => !ReferenceEquals(null, obj) && obj is Unit;
+        public override bool Equals(object obj) => obj is Unit;
 
         public override int GetHashCode() => GetHashCode(this);
     }
