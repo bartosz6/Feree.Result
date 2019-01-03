@@ -1,10 +1,9 @@
 using System;
 using System.Threading.Tasks;
-using Feree.ResultType.Results;
 
-namespace Feree.ResultType.Extensions
+namespace Feree.ResultType.Results
 {
-    public static class AsyncExtensions
+    public static class AsyncBindExtensions
     {
         public static async Task<IResult<TNext>> BindAsync<TPrev, TNext>(
             this Task<IResult<TPrev>> prev, Func<IResult<TNext>> next) =>
@@ -17,6 +16,7 @@ namespace Feree.ResultType.Extensions
         public static async Task<IResult<TNext>> BindAsync<TPrev, TNext>(
             this Task<IResult<TPrev>> prev, Func<Task<IResult<TNext>>> next) =>
             await (await prev).BindAsync(next);
+        
         public static async Task<IResult<TNext>> BindAsync<TPrev, TNext>(
             this Task<IResult<TPrev>> prev, Func<TPrev, Task<IResult<TNext>>> next) =>
             await (await prev).BindAsync(next);

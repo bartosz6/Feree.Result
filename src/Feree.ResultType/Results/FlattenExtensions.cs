@@ -3,15 +3,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Feree.ResultType.Errors;
 using Feree.ResultType.Factories;
-using Feree.ResultType.Results;
 
-namespace Feree.ResultType.Extensions
+namespace Feree.ResultType.Results
 {
-    public static class EnumerableExtensions
+    public static class FlattenExtensions
     {
         public static IResult<IEnumerable<T>> Flatten<T>(this IEnumerable<IResult<T>> results)
         {
-            var resultList = results.ToList();
+            var resultList = results.ToArray();
             var errors = resultList.OfType<Failure<T>>().Select(failure => failure.Error).ToArray();
             var payloads = resultList.OfType<Success<T>>().Select(success => success.Payload);
             return errors.Any()
@@ -21,7 +20,7 @@ namespace Feree.ResultType.Extensions
         
         public static async Task<IResult<IEnumerable<T>>> Flatten<T>(this IEnumerable<Task<IResult<T>>> results)
         {
-            var resultList = results.ToList();
+            var resultList = results.ToArray();
             
             await Task.WhenAll(resultList); 
 
