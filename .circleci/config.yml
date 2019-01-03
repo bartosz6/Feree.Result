@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Pack and publish
           command: |
-            version=$(git tag --list | sort -Vr | head -1)
+            version=$(git describe --tags)
             nuget pack package/Feree.ResultType.nuspec -properties Configuration=Release -Version $version
             nuget setApiKey $nugetApiKey
             nuget push Feree.ResultType.$version.nupkg -Source https://api.nuget.org/v3/index.json
