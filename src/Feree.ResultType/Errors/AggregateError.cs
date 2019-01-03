@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Feree.ResultType.Results;
 
 namespace Feree.ResultType.Errors
 {
