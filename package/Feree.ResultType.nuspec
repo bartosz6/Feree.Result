@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Feree.Option</id>
+    <id>Feree.ResultType</id>
     <version>$version$</version>
-    <title>Option Type</title>
+    <title>Result Type</title>
     <authors>Feree</authors>
     <owners>Feree</owners>
-    <licenseUrl>https://github.com/bartosz6/Feree.Option/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/bartosz6/Feree.Option</projectUrl>
+    <licenseUrl>https://github.com/bartosz6/Feree.Result/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/bartosz6/Feree.Result</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Implementation of Option type based on pattern matching</description>
+    <description>Implementation of result type based on pattern matching</description>
     <releaseNotes>Init</releaseNotes>
-    <copyright>Copyright 2018</copyright>
-    <tags>Option OptionType Feree</tags>
+    <copyright>Copyright 2019</copyright>
+    <tags>Railway Result ResultType Feree</tags>
   </metadata>
   <files>
-    <file src="../src/Feree.Option/bin/Release/netstandard2.0/Feree.Option.dll" target="lib/netstandard2.0" />
+    <file src="../src/Feree.ResultType/bin/Release/netstandard2.0/Feree.ResultType.dll" target="lib/netstandard2.0" />
   </files>
 </package>
