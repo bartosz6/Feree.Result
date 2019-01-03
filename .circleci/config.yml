@@ -22,17 +22,7 @@ jobs:
           at: .
       - run:
           name: Tests
-          command: dotnet test -v normal --configuration Release -f netcoreapp2.1 src/Feree.ResultType.Tests/
-  integration tests:
-    working_directory: ~/build
-    docker:
-      - image: microsoft/dotnet:sdk
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: Tests
-          command: dotnet test -v normal --configuration Release -f netcoreapp2.1 src/Feree.ResultType.IntegrationTests/
+          command: dotnet test -v normal --configuration Release -f netcoreapp2.1 test/Feree.ResultType.UnitTests/
   nuget:
     working_directory: ~/build
     docker:
@@ -61,13 +51,9 @@ workflows:
       - unit tests:
           requires:
             - build
-      - integration tests:
-          requires:
-            - build
       - nuget:
           filters:
             branches:
               only: deploy
           requires:
             - unit tests
-            - integration tests
