@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using Feree.ResultType.Results;
 using Newtonsoft.Json;
 
 namespace Feree.ResultType.Errors
