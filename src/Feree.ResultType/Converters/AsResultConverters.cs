@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Feree.ResultType.Factories;
 using Feree.ResultType.Results;
 
 namespace Feree.ResultType.Converters
 {
-    public static class Converters
+    public static class AsResultConverters
     {
         public static IResult<T> AsResult<T>(this T @object) => ResultFactory.CreateSuccess(@object);
 
