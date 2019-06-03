@@ -6,10 +6,10 @@ using Xunit;
 
 namespace Feree.ResultType.UnitTests
 {
-    public class BindTests
+    public class BindSuccessToSuccessTests
     {
         [Fact]
-        public void Bind_OnSuccess_GivenSuccess_ReturnsSuccess()
+        public void Bind_ReturnsSuccess()
         {
             var success = ResultFactory.CreateSuccess(1);
             var next = ResultFactory.CreateSuccess(2);
@@ -21,7 +21,7 @@ namespace Feree.ResultType.UnitTests
         }
 
         [Fact]
-        public void Bind_OnSuccess_WhenResultIgnored_GivenSuccess_ReturnsSuccess()
+        public void Bind_WhenResultIgnored_ReturnsSuccess()
         {
             var success = ResultFactory.CreateSuccess(1);
             var next = ResultFactory.CreateSuccess(2);
@@ -33,10 +33,10 @@ namespace Feree.ResultType.UnitTests
         }
 
         [Fact]
-        public async Task BindAsync_OnSuccess_GivenSuccessAsync_ReturnsSuccessAsync()
+        public async Task BindAsync_WhenNextIsAsync_ReturnsSuccessAsync()
         {
             var success = ResultFactory.CreateSuccess(1);
-            var next = Task.FromResult(ResultFactory.CreateSuccess(2));
+            var next = ResultFactory.CreateSuccessAsync(2);
 
             var result = success.BindAsync(a => next);
 
@@ -45,10 +45,10 @@ namespace Feree.ResultType.UnitTests
         }
 
         [Fact]
-        public async Task BindAsync_OnSuccess_WhenResultIgnored_GivenSuccessAsync_ReturnsSuccessAsync()
+        public async Task BindAsync_WhenNextIsAsync_WhenResultIgnored_ReturnsSuccessAsync()
         {
             var success = ResultFactory.CreateSuccess(1);
-            var next = Task.FromResult(ResultFactory.CreateSuccess(2));
+            var next = ResultFactory.CreateSuccessAsync(2);
 
             var result = success.BindAsync(() => next);
 
@@ -57,10 +57,10 @@ namespace Feree.ResultType.UnitTests
         }
 
         [Fact]
-        public async Task BindAsync_OnSuccessAsync_GivenSuccessAsync_ReturnsSuccessAsync()
+        public async Task BindAsync_WhenPrevIsAsync_ReturnsSuccessAsync()
         {
-            var success = Task.FromResult(ResultFactory.CreateSuccess(1));
-            var next = Task.FromResult(ResultFactory.CreateSuccess(2));
+            var success = ResultFactory.CreateSuccessAsync(1);
+            var next = ResultFactory.CreateSuccess(2);
 
             var result = success.BindAsync(a => next);
 
@@ -69,38 +69,39 @@ namespace Feree.ResultType.UnitTests
         }
 
         [Fact]
-        public async Task BindAsync_OnSuccessAsync_WhenResultIgnored_GivenSuccessAsync_ReturnsSuccessAsync()
+        public async Task BindAsync_WhenPrevIsAsync_WhenResultIgnored_ReturnsSuccessAsync()
         {
-            var success = Task.FromResult(ResultFactory.CreateSuccess(1));
-            var next = Task.FromResult(ResultFactory.CreateSuccess(2));
+            var success = ResultFactory.CreateSuccessAsync(1);
+            var next = ResultFactory.CreateSuccess(2);
 
             var result = success.BindAsync(() => next);
 
             await result.ShouldBeSuccess();
             (await result.Payload()).ShouldBe(2);
         }
-    }
 
-    public static class ResultAssertExtensions
-    {
-        public static void ShouldBeSuccess<T>(this IResult<T> result) => result.ShouldBeOfType(typeof(Success<T>));
-        public static void ShouldBeFailure<T>(this IResult<T> result) => result.ShouldBeOfType(typeof(Failure<T>));
-        public static async Task ShouldBeSuccess<T>(this Task<IResult<T>> result) => (await result).ShouldBeOfType(typeof(Success<T>));
-        public static async Task ShouldBeFailure<T>(this Task<IResult<T>> result) => (await result).ShouldBeOfType(typeof(Failure<T>));
-
-        public static async Task<T> Payload<T>(this Task<IResult<T>> result)
+        [Fact]
+        public async Task BindAsync_WhenBothAreAsync_ReturnsSuccessAsync()
         {
-            var awaited = await result;
-            awaited.ShouldBeOfType(typeof(Success<T>));
-            var success = (Success<T>) awaited;
-            return success.Payload;
+            var success = ResultFactory.CreateSuccessAsync(1);
+            var next = ResultFactory.CreateSuccessAsync(2);
+
+            var result = success.BindAsync(a => next);
+
+            await result.ShouldBeSuccess();
+            (await result.Payload()).ShouldBe(2);
         }
 
-        public static T Payload<T>(this IResult<T> result)
+        [Fact]
+        public async Task BindAsync_WhenBothAreAsync_WhenResultIgnored_ReturnsSuccessAsync()
         {
-            result.ShouldBeOfType(typeof(Success<T>));
-            var success = (Success<T>) result;
-            return success.Payload;
+            var success = ResultFactory.CreateSuccessAsync(1);
+            var next = ResultFactory.CreateSuccessAsync(2);
+
+            var result = success.BindAsync(() => next);
+
+            await result.ShouldBeSuccess();
+            (await result.Payload()).ShouldBe(2);
         }
     }
 }

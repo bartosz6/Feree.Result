@@ -6,102 +6,101 @@ using Xunit;
 
 namespace Feree.ResultType.UnitTests
 {
-    public class BindSuccessToSuccessTests
+    public class BindSuccessToFailureTests
     {
         [Fact]
-        public void Bind_ReturnsSuccess()
+        public void Bind_ReturnsFailure()
         {
             var success = ResultFactory.CreateSuccess(1);
-            var next = ResultFactory.CreateSuccess(2);
-
+            var next = ResultFactory.CreateFailure("some serious message");
             var result = success.Bind(a => next);
 
-            result.ShouldBeSuccess();
-            result.Payload().ShouldBe(2);
+            result.ShouldBeFailure();
+            result.Error().Message.ShouldBe("some serious message");
         }
 
         [Fact]
-        public void Bind_WhenResultIgnored_ReturnsSuccess()
+        public void Bind_WhenResultIgnored_ReturnsFailure()
         {
             var success = ResultFactory.CreateSuccess(1);
-            var next = ResultFactory.CreateSuccess(2);
+            var next = ResultFactory.CreateFailure("some serious message");
 
             var result = success.Bind(() => next);
 
-            result.ShouldBeSuccess();
-            result.Payload().ShouldBe(2);
+            result.ShouldBeFailure();
+            result.Error().Message.ShouldBe("some serious message");
         }
 
         [Fact]
-        public async Task BindAsync_WhenNextIsAsync_ReturnsSuccessAsync()
+        public async Task BindAsync_WhenNextIsAsync_ReturnsFailureAsync()
         {
             var success = ResultFactory.CreateSuccess(1);
-            var next = Task.FromResult(ResultFactory.CreateSuccess(2));
+            var next = ResultFactory.CreateFailureAsync("some serious message");
 
             var result = success.BindAsync(a => next);
 
-            await result.ShouldBeSuccess();
-            (await result.Payload()).ShouldBe(2);
+            await result.ShouldBeFailure();
+            (await result.Error()).Message.ShouldBe("some serious message");
         }
 
         [Fact]
-        public async Task BindAsync_WhenNextIsAsync_WhenResultIgnored_ReturnsSuccessAsync()
+        public async Task BindAsync_WhenNextIsAsync_WhenResultIgnored_ReturnsFailureAsync()
         {
             var success = ResultFactory.CreateSuccess(1);
-            var next = Task.FromResult(ResultFactory.CreateSuccess(2));
+            var next = ResultFactory.CreateFailureAsync("some serious message");
 
             var result = success.BindAsync(() => next);
 
-            await result.ShouldBeSuccess();
-            (await result.Payload()).ShouldBe(2);
+            await result.ShouldBeFailure();
+            (await result.Error()).Message.ShouldBe("some serious message");
         }
 
         [Fact]
-        public async Task BindAsync_WhenPrevIsAsync_ReturnsSuccessAsync()
+        public async Task BindAsync_WhenPrevIsAsync_ReturnsFailureAsync()
         {
-            var success = Task.FromResult(ResultFactory.CreateSuccess(1));
-            var next = ResultFactory.CreateSuccess(2);
+            var success = ResultFactory.CreateSuccessAsync(1);
+            var next = ResultFactory.CreateFailure("some serious message");
 
             var result = success.BindAsync(a => next);
 
-            await result.ShouldBeSuccess();
-            (await result.Payload()).ShouldBe(2);
+            await result.ShouldBeFailure();
+            (await result.Error()).Message.ShouldBe("some serious message");
         }
 
         [Fact]
-        public async Task BindAsync_WhenPrevIsAsync_WhenResultIgnored_ReturnsSuccessAsync()
+        public async Task BindAsync_WhenPrevIsAsync_WhenResultIgnored_ReturnsFailureAsync()
         {
-            var success = Task.FromResult(ResultFactory.CreateSuccess(1));
-            var next = ResultFactory.CreateSuccess(2);
+            var success = ResultFactory.CreateSuccessAsync(1);
+            var next = ResultFactory.CreateFailure("some serious message");
 
             var result = success.BindAsync(() => next);
 
-            await result.ShouldBeSuccess();
-            (await result.Payload()).ShouldBe(2);
+            await result.ShouldBeFailure();
+            (await result.Error()).Message.ShouldBe("some serious message");
         }
 
         [Fact]
-        public async Task BindAsync_WhenBothAreAsync_ReturnsSuccessAsync()
+        public async Task BindAsync_WhenBothAreAsync_ReturnsFailureAsync()
         {
-            var success = Task.FromResult(ResultFactory.CreateSuccess(1));
-            var next = Task.FromResult(ResultFactory.CreateSuccess(2));
+            var success = ResultFactory.CreateSuccessAsync(1);
+            var next = ResultFactory.CreateFailureAsync("some serious message");
 
             var result = success.BindAsync(a => next);
 
-            await result.ShouldBeSuccess();
-            (await result.Payload()).ShouldBe(2);
+            await result.ShouldBeFailure();
+            (await result.Error()).Message.ShouldBe("some serious message");
         }
 
         [Fact]
-        public async Task BindAsync_WhenBothAreAsync_WhenResultIgnored_ReturnsSuccessAsync()
+        public async Task BindAsync_WhenBothAreAsync_WhenResultIgnored_ReturnsFailureAsync()
         {
-            var success = Task.FromResult(ResultFactory.CreateSuccess(1));
-            var next = Task.FromResult(ResultFactory.CreateSuccess(2));
+            var success = ResultFactory.CreateSuccessAsync(1);
+            var next = ResultFactory.CreateFailureAsync("some serious message");
 
             var result = success.BindAsync(() => next);
 
-            await result.ShouldBeSuccess();
-            (await result.Payload()).ShouldBe(2);
+            await result.ShouldBeFailure();
+            (await result.Error()).Message.ShouldBe("some serious message");
         }
     }
 }

@@ -25,5 +25,20 @@ namespace Feree.ResultType.UnitTests
             var success = (Success<T>) result;
             return success.Payload;
         }
+        
+        public static async Task<IError> Error<T>(this Task<IResult<T>> result)
+        {
+            var awaited = await result;
+            awaited.ShouldBeOfType(typeof(Failure<T>));
+            var success = (Failure<T>) awaited;
+            return success.Error;
+        }
+
+        public static IError Error<T>(this IResult<T> result)
+        {
+            result.ShouldBeOfType(typeof(Failure<T>));
+            var success = (Failure<T>) result;
+            return success.Error;
+        }
     }
 }

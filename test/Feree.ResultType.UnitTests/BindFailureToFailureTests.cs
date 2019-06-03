@@ -6,13 +6,13 @@ using Xunit;
 
 namespace Feree.ResultType.UnitTests
 {
-    public class BindFailureToSuccessTests
+    public class BindFailureToFailureTests
     {
         [Fact]
         public void Bind_ReturnsFailure()
         {
             var failure = ResultFactory.CreateFailure("some serious message");
-            var next = ResultFactory.CreateSuccess(1);
+            var next = ResultFactory.CreateFailure("next error");
             var result = failure.Bind(a => next);
 
             result.ShouldBeFailure();
@@ -23,7 +23,7 @@ namespace Feree.ResultType.UnitTests
         public void Bind_WhenResultIgnored_ReturnsFailure()
         {
             var failure =  ResultFactory.CreateFailure("some serious message");
-            var next = ResultFactory.CreateSuccess(1);
+            var next = ResultFactory.CreateFailure("next error");
 
             var result = failure.Bind(() => next);
 
@@ -35,7 +35,7 @@ namespace Feree.ResultType.UnitTests
         public async Task BindAsync_WhenNextIsAsync_ReturnsFailureAsync()
         {
             var failure = ResultFactory.CreateFailure("some serious message");
-            var next =  ResultFactory.CreateSuccessAsync(1);
+            var next =  ResultFactory.CreateFailureAsync("next error");
 
             var result = failure.BindAsync(a => next);
 
@@ -47,7 +47,7 @@ namespace Feree.ResultType.UnitTests
         public async Task BindAsync_WhenNextIsAsync_WhenResultIgnored_ReturnsFailureAsync()
         {
             var failure = ResultFactory.CreateFailure("some serious message");
-            var next =  ResultFactory.CreateSuccessAsync(1);
+            var next = ResultFactory.CreateFailureAsync("next error");
 
             var result = failure.BindAsync(() => next);
 
@@ -59,7 +59,7 @@ namespace Feree.ResultType.UnitTests
         public async Task BindAsync_WhenPrevIsAsync_ReturnsFailureAsync()
         {
             var failure = ResultFactory.CreateFailureAsync("some serious message"); 
-            var next = ResultFactory.CreateSuccess(1);
+            var next = ResultFactory.CreateFailure("next error");
 
             var result = failure.BindAsync(a => next);
 
@@ -71,7 +71,7 @@ namespace Feree.ResultType.UnitTests
         public async Task BindAsync_WhenPrevIsAsync_WhenResultIgnored_ReturnsFailureAsync()
         {
             var failure = ResultFactory.CreateFailureAsync("some serious message"); 
-            var next = ResultFactory.CreateSuccess(1);
+            var next = ResultFactory.CreateFailure("next error");
 
             var result = failure.BindAsync(() => next);
 
@@ -83,7 +83,7 @@ namespace Feree.ResultType.UnitTests
         public async Task BindAsync_WhenBothAreAsync_ReturnsFailureAsync()
         {
             var failure = ResultFactory.CreateFailureAsync("some serious message"); 
-            var next = ResultFactory.CreateSuccessAsync(1);
+            var next = ResultFactory.CreateFailureAsync("next error");
 
             var result = failure.BindAsync(a => next);
 
@@ -95,7 +95,7 @@ namespace Feree.ResultType.UnitTests
         public async Task BindAsync_WhenBothAreAsync_WhenResultIgnored_ReturnsFailureAsync()
         {
             var failure = ResultFactory.CreateFailureAsync("some serious message"); 
-            var next = ResultFactory.CreateSuccessAsync(1);
+            var next = ResultFactory.CreateFailureAsync("next error");
 
             var result = failure.BindAsync(() => next);
 
