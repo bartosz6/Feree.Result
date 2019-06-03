@@ -10,7 +10,7 @@ namespace Feree.ResultType.Factories
     public static class ResultFactory
     {
         public static IResult<T> CreateSuccess<T>(T payload) =>
-            payload is null
+            payload == null
                 ? CreateFailure<T>($"payload {typeof(T).Name} was null")
                 : new Success<T>(payload);
 
