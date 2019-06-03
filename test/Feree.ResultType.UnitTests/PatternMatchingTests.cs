@@ -11,6 +11,8 @@ namespace Feree.ResultType.UnitTests
         {
             var success = ResultFactory.CreateSuccess(5);
             
+            Assert.True(success is IResult);
+            Assert.True(success is IResult<int>);
             Assert.True(success is Success);
             Assert.True(success is Success<int>);
         }
@@ -20,6 +22,8 @@ namespace Feree.ResultType.UnitTests
         {
             var success = ResultFactory.CreateSuccess(5);
             
+            Assert.True(success is IResult);
+            Assert.True(success is IResult<int>);
             Assert.False(success is Failure);
             Assert.False(success is Failure<int>);
         }
@@ -29,6 +33,8 @@ namespace Feree.ResultType.UnitTests
         {
             var failure = ResultFactory.CreateFailure<int>("");
             
+            Assert.True(failure is IResult);
+            Assert.True(failure is IResult<int>);
             Assert.True(failure is Failure);
             Assert.True(failure is Failure<int>);
         }
@@ -38,6 +44,8 @@ namespace Feree.ResultType.UnitTests
         {
             var failure = ResultFactory.CreateFailure<int>("");
             
+            Assert.True(failure is IResult);
+            Assert.True(failure is IResult<int>);
             Assert.False(failure is Success);
             Assert.False(failure is Success<int>);
         }
