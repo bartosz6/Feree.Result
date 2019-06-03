@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Feree.ResultType.Errors;
 using Feree.ResultType.Results;
 
@@ -31,5 +32,23 @@ namespace Feree.ResultType.Factories
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0) =>
             new Failure<Unit>(new Error(message, memberName, sourceFilePath, sourceLineNumber));
+        
+        public static Task<IResult<T>> CreateSuccessAsync<T>(T payload) => 
+            Task.FromResult(CreateSuccess(payload));
+        
+        public static Task<IResult<Unit>> CreateSuccessAsync() => 
+            Task.FromResult(CreateSuccess());
+
+        public static Task<IResult<T>> CreateFailureAsync<T>(IError error) =>
+            Task.FromResult(CreateFailure<T>(error));
+        
+        public static Task<IResult<Unit>> CreateFailureAsync(IError error) => 
+            Task.FromResult(CreateFailure(error));
+
+        public static Task<IResult<T>> CreateFailureAsync<T>(string message) =>
+            Task.FromResult(CreateFailure<T>(message));
+
+        public static Task<IResult<Unit>> CreateFailureAsync(string message) =>
+            Task.FromResult(CreateFailure(message));
     }
 }
