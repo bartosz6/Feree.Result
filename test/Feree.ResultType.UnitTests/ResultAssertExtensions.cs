@@ -40,5 +40,7 @@ namespace Feree.ResultType.UnitTests
             var success = (Failure<T>) result;
             return success.Error;
         }
+
+        public static T To<T>(this object obj) => (T) obj;
     }
 }
