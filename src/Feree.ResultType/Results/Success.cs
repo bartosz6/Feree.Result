@@ -17,6 +17,8 @@ namespace Feree.ResultType.Results
         public IResult<TNext> Bind<TNext>(Func<T, IResult<TNext>> next) => next(Payload);
 
         public Task<IResult<TNext>> BindAsync<TNext>(Func<T, Task<IResult<TNext>>> next) => next(Payload);
+
+        public static implicit operator T(Success<T> success) => success.Payload;
     }
 
     public abstract class Success : IResult<Unit>
