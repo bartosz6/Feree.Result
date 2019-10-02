@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/build
     docker:
-      - image: microsoft/dotnet:sdk
+      - image: mcr.microsoft.com/dotnet/core/sdk:3.0
     steps:
       - checkout
       - run:
@@ -16,13 +16,13 @@ jobs:
   unit tests:
     working_directory: ~/build
     docker:
-      - image: microsoft/dotnet:sdk
+      - image: mcr.microsoft.com/dotnet/core/sdk:3.0
     steps:
       - attach_workspace:
           at: .
       - run:
           name: Tests
-          command: dotnet test -v normal --configuration Release -f netcoreapp2.1 test/Feree.ResultType.UnitTests/
+          command: dotnet test -v normal --configuration Release -f netcoreapp3.0 test/Feree.ResultType.UnitTests/
   nuget:
     working_directory: ~/build
     docker:
