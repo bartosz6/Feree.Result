@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/build
     docker:
-      - image: microsoft/dotnet:sdk
+      - image: mcr.microsoft.com/dotnet/core/sdk:3.0
     steps:
       - checkout
       - run:
@@ -16,7 +16,7 @@ jobs:
   unit tests:
     working_directory: ~/build
     docker:
-      - image: microsoft/dotnet:sdk
+      - image: mcr.microsoft.com/dotnet/core/sdk:3.0
     steps:
       - attach_workspace:
           at: .
