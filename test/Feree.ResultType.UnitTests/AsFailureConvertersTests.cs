@@ -18,7 +18,7 @@ namespace Feree.ResultType.UnitTests
             failure.ShouldBeAssignableTo<Failure<string>>();
             failure.Error().Message.ShouldBe("ojoj");
             failure.Error().To<Error>().MemberName.ShouldBe(nameof(AsFailureT_onMessage_returnsFailureWithErrorMessage));
-            failure.Error().To<Error>().SourceFilePath.ShouldEndWith(@"Feree.Result\test\Feree.ResultType.UnitTests\AsFailureConvertersTests.cs");
+            failure.Error().To<Error>().SourceFilePath.ShouldEndWith(@"AsFailureConvertersTests.cs");
             failure.Error().To<Error>().SourceLineNumber.ShouldBe(15);
         }
         
@@ -30,7 +30,7 @@ namespace Feree.ResultType.UnitTests
             failure.ShouldBeFailure();
             failure.Error().Message.ShouldBe("ojoj");
             failure.Error().To<Error>().MemberName.ShouldBe(nameof(AsFailure_onMessage_returnsFailureWithErrorMessage));
-            failure.Error().To<Error>().SourceFilePath.ShouldEndWith(@"Feree.Result\test\Feree.ResultType.UnitTests\AsFailureConvertersTests.cs");
+            failure.Error().To<Error>().SourceFilePath.ShouldEndWith(@"AsFailureConvertersTests.cs");
             failure.Error().To<Error>().SourceLineNumber.ShouldBe(28);
         }
         
@@ -42,7 +42,7 @@ namespace Feree.ResultType.UnitTests
             failure.ShouldBeFailure();
             failure.Error().Message.ShouldBe("ojoj");
             failure.Error().To<Error>().MemberName.ShouldBe(nameof(AsFailureAsync_onMessage_returnsFailureWithErrorMessage));
-            failure.Error().To<Error>().SourceFilePath.ShouldEndWith(@"Feree.Result\test\Feree.ResultType.UnitTests\AsFailureConvertersTests.cs");
+            failure.Error().To<Error>().SourceFilePath.ShouldEndWith(@"AsFailureConvertersTests.cs");
             failure.Error().To<Error>().SourceLineNumber.ShouldBe(40);
         }
         
@@ -55,7 +55,7 @@ namespace Feree.ResultType.UnitTests
             failure.ShouldBeAssignableTo<Failure<int>>();
             failure.Error().Message.ShouldBe("ojoj");
             failure.Error().To<Error>().MemberName.ShouldBe(nameof(AsFailureAsyncT_onMessage_returnsFailureWithErrorMessage));
-            failure.Error().To<Error>().SourceFilePath.ShouldEndWith(@"Feree.Result\test\Feree.ResultType.UnitTests\AsFailureConvertersTests.cs");
+            failure.Error().To<Error>().SourceFilePath.ShouldEndWith(@"AsFailureConvertersTests.cs");
             failure.Error().To<Error>().SourceLineNumber.ShouldBe(52);
         }
     }
