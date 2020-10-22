@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+// ReSharper disable once CheckNamespace
 namespace Feree.ResultType
 {
     public struct Unit : IEqualityComparer<Unit>, IEquatable<Unit>

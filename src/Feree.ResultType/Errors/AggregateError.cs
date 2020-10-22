@@ -3,7 +3,7 @@ using Feree.ResultType.Results;
 
 namespace Feree.ResultType.Errors
 {
-    public struct AggregateError : IError
+    public readonly struct AggregateError : IError
     {
         public AggregateError(IError[] innerErrors) => InnerErrors = innerErrors;
 

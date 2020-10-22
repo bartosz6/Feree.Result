@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Feree.ResultType.Errors;
@@ -8,6 +9,7 @@ namespace Feree.ResultType.Results
 {
     public static class FlattenExtensions
     {
+        [DebuggerHidden]
         public static IResult<IEnumerable<T>> Flatten<T>(this IEnumerable<IResult<T>> results)
         {
             var resultList = results.ToArray();
@@ -18,6 +20,7 @@ namespace Feree.ResultType.Results
                 : ResultFactory.CreateSuccess(payloads);
         }
         
+        [DebuggerHidden]
         public static async Task<IResult<IEnumerable<T>>> Flatten<T>(this IEnumerable<Task<IResult<T>>> results)
         {
             var resultList = results.ToArray();
@@ -31,6 +34,7 @@ namespace Feree.ResultType.Results
                 : ResultFactory.CreateSuccess(payloads);
         }
 
+        [DebuggerHidden]
         public static async Task<IResult<IEnumerable<T>>> Flatten<T>(this Task<IEnumerable<IResult<T>>> results)
         {
             var resultList = (await results).ToArray();

@@ -1,6 +1,7 @@
 using Feree.ResultType.Factories;
 using Feree.ResultType.Results;
 using Xunit;
+// ReSharper disable IsExpressionAlwaysTrue
 
 namespace Feree.ResultType.UnitTests
 {

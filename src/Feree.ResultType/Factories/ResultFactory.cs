@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Feree.ResultType.Errors;
@@ -7,6 +8,7 @@ using Feree.ResultType.Results;
 namespace Feree.ResultType.Factories
 {
     [SuppressMessage("ReSharper", "ExplicitCallerInfoArgument")]
+    [DebuggerStepThrough]
     public static class ResultFactory
     {
         public static IResult<T> CreateSuccess<T>(T payload) =>

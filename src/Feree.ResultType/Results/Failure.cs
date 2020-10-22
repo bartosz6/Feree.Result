@@ -1,6 +1,6 @@
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
-using Feree.ResultType.Errors;
 
 namespace Feree.ResultType.Results
 {
@@ -8,9 +8,11 @@ namespace Feree.ResultType.Results
     {
         protected internal Failure(IError error) : base(error) { }
 
+        [DebuggerHidden]
         public IResult<TNext> Bind<TNext>(Func<T, IResult<TNext>> next) => 
             new Failure<TNext>(Error);
 
+        [DebuggerHidden]
         public Task<IResult<TNext>> BindAsync<TNext>(Func<T, Task<IResult<TNext>>> next) => 
             Task.FromResult<IResult<TNext>>(new Failure<TNext>(Error));
     }
@@ -21,13 +23,17 @@ namespace Feree.ResultType.Results
 
         protected internal Failure(IError error) => Error = error ?? throw new ArgumentNullException(nameof(error));
 
+        [DebuggerHidden]
         public IResult<TNext> Bind<TNext>(Func<Unit, IResult<TNext>> next) => new Failure<TNext>(Error);
 
+        [DebuggerHidden]
         public IResult<TNext> Bind<TNext>(Func<IResult<TNext>> next) => new Failure<TNext>(Error);
 
+        [DebuggerHidden]
         public Task<IResult<TNext>> BindAsync<TNext>(Func<Unit, Task<IResult<TNext>>> next) =>
             Task.FromResult<IResult<TNext>>(new Failure<TNext>(Error));
 
+        [DebuggerHidden]
         public Task<IResult<TNext>> BindAsync<TNext>(Func<Task<IResult<TNext>>> next) =>
             Task.FromResult<IResult<TNext>>(new Failure<TNext>(Error));
     }

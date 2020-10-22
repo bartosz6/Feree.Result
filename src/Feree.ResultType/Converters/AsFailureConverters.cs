@@ -7,30 +7,27 @@ using Feree.ResultType.Results;
 
 namespace Feree.ResultType.Converters
 {
+    [DebuggerStepThrough]
     public static class AsFailureConverters
     {
-        [DebuggerStepThrough]
         public static IResult<T> AsFailure<T>(this string errorMessage,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0) => 
             ResultFactory.CreateFailure<T>(errorMessage, memberName, sourceFilePath, sourceLineNumber);
         
-        [DebuggerStepThrough]
         public static IResult<Unit> AsFailure(this string errorMessage,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0) => 
             ResultFactory.CreateFailure(errorMessage, memberName, sourceFilePath, sourceLineNumber);
         
-        [DebuggerStepThrough]
         public static ValueTask<IResult<Unit>> AsFailureAsync(this string errorMessage,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0) => 
         new ValueTask<IResult<Unit>>(errorMessage.AsFailure(memberName, sourceFilePath, sourceLineNumber));
         
-        [DebuggerStepThrough]
         public static ValueTask<IResult<T>> AsFailureAsync<T>(this string errorMessage,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",

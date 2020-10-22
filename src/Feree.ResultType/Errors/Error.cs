@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Feree.ResultType.Errors
 {
-    public struct Error : IError
+    public readonly struct Error : IError
     {
         public Error(string message,
             [CallerMemberName] string memberName = "",
