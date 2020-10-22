@@ -48,11 +48,13 @@ workflows:
   build_and_test:
     jobs:
       - build:
-          tags:
-            only: /.*/
+          filters:
+            tags:
+              only: /.*/
       - unit tests:
-          tags:
-            only: /.*/
+          filters:
+            tags:
+              only: /.*/
           requires:
             - build
       - nuget:
