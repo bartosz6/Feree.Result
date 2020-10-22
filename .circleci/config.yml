@@ -56,6 +56,6 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /[0-9].*/
+              only: /^[0-9].*/
           requires:
             - unit tests
