@@ -7,27 +7,34 @@ using Feree.ResultType.Results;
 
 namespace Feree.ResultType.Converters
 {
-    [DebuggerStepThrough]
     public static class AsFailureConverters
     {
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IResult<T> AsFailure<T>(this string errorMessage,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0) => 
             ResultFactory.CreateFailure<T>(errorMessage, memberName, sourceFilePath, sourceLineNumber);
         
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IResult<Unit> AsFailure(this string errorMessage,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0) => 
             ResultFactory.CreateFailure(errorMessage, memberName, sourceFilePath, sourceLineNumber);
         
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ValueTask<IResult<Unit>> AsFailureAsync(this string errorMessage,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0) => 
         new ValueTask<IResult<Unit>>(errorMessage.AsFailure(memberName, sourceFilePath, sourceLineNumber));
         
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ValueTask<IResult<T>> AsFailureAsync<T>(this string errorMessage,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",

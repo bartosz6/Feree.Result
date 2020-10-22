@@ -1,19 +1,24 @@
 using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace Feree.ResultType.Results
 {
     public class Failure<T> : Failure, IResult<T>
     {
-        protected internal Failure(IError error) : base(error) { }
+        protected internal Failure(IError error) : base(error)
+        {
+        }
 
         [DebuggerHidden]
-        public IResult<TNext> Bind<TNext>(Func<T, IResult<TNext>> next) => 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public IResult<TNext> Bind<TNext>(Func<T, IResult<TNext>> next) =>
             new Failure<TNext>(Error);
 
         [DebuggerHidden]
-        public Task<IResult<TNext>> BindAsync<TNext>(Func<T, Task<IResult<TNext>>> next) => 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Task<IResult<TNext>> BindAsync<TNext>(Func<T, Task<IResult<TNext>>> next) =>
             Task.FromResult<IResult<TNext>>(new Failure<TNext>(Error));
     }
 
@@ -24,16 +29,20 @@ namespace Feree.ResultType.Results
         protected internal Failure(IError error) => Error = error ?? throw new ArgumentNullException(nameof(error));
 
         [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IResult<TNext> Bind<TNext>(Func<Unit, IResult<TNext>> next) => new Failure<TNext>(Error);
 
         [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IResult<TNext> Bind<TNext>(Func<IResult<TNext>> next) => new Failure<TNext>(Error);
 
         [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Task<IResult<TNext>> BindAsync<TNext>(Func<Unit, Task<IResult<TNext>>> next) =>
             Task.FromResult<IResult<TNext>>(new Failure<TNext>(Error));
 
         [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Task<IResult<TNext>> BindAsync<TNext>(Func<Task<IResult<TNext>>> next) =>
             Task.FromResult<IResult<TNext>>(new Failure<TNext>(Error));
     }
