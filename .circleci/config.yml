@@ -47,13 +47,19 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              only: /.*/
       - unit tests:
+          filters:
+            tags:
+              only: /.*/
           requires:
             - build
       - nuget:
           filters:
             tags:
-              only: /.*/
+              only: /[0-9].*/
           requires:
             - unit tests
