@@ -53,7 +53,7 @@ workflows:
             - build
       - nuget:
           filters:
-            branches:
-              only: deploy
+            tags:
+              only: /.*/
           requires:
             - unit tests
