@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Feree.ResultType.Results
 {
-    public class Failure<T> : Failure, IResult<T>
+    public record Failure<T> : Failure, IResult<T>
     {
         protected internal Failure(IError error) : base(error)
         {
@@ -22,7 +22,7 @@ namespace Feree.ResultType.Results
             Task.FromResult<IResult<TNext>>(new Failure<TNext>(Error));
     }
 
-    public abstract class Failure : IResult<Unit>
+    public abstract record Failure : IResult<Unit>
     {
         public IError Error { get; }
 

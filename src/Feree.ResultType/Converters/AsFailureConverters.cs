@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Feree.ResultType.Factories;
 using Feree.ResultType.Results;
-// ReSharper disable ExplicitCallerInfoArgument
 
 namespace Feree.ResultType.Converters
 {
@@ -31,7 +30,7 @@ namespace Feree.ResultType.Converters
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0) => 
-        new ValueTask<IResult<Unit>>(errorMessage.AsFailure(memberName, sourceFilePath, sourceLineNumber));
+        new(errorMessage.AsFailure(memberName, sourceFilePath, sourceLineNumber));
         
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -39,6 +38,6 @@ namespace Feree.ResultType.Converters
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0) => 
-        new ValueTask<IResult<T>>(errorMessage.AsFailure<T>(memberName, sourceFilePath, sourceLineNumber));
+        new(errorMessage.AsFailure<T>(memberName, sourceFilePath, sourceLineNumber));
     }
 }

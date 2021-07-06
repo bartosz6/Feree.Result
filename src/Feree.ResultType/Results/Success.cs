@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Feree.ResultType.Results
 {
-    public class Success<T> : Success, IResult<T>
+    public record Success<T> : Success, IResult<T>
     {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -31,7 +31,7 @@ namespace Feree.ResultType.Results
         public static implicit operator T(Success<T> success) => success.Payload;
     }
 
-    public abstract class Success : IResult<Unit>
+    public abstract record Success : IResult<Unit>
     {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

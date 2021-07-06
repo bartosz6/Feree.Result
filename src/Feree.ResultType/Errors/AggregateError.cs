@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Feree.ResultType.Results;
 
 namespace Feree.ResultType.Errors
 {
-    public readonly struct AggregateError : IError
+    public record AggregateError(IEnumerable<IError> InnerErrors) : IError
     {
-        public AggregateError(IError[] innerErrors) => InnerErrors = innerErrors;
-
-        public IReadOnlyCollection<IError> InnerErrors { get; }
         public string Message => "aggregate error, see InnerErrors for details";
     }
 }

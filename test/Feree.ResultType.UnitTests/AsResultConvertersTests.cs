@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Feree.ResultType.Converters;
-using Shouldly;
 using Xunit;
+using Shouldly;
 
 namespace Feree.ResultType.UnitTests
 {

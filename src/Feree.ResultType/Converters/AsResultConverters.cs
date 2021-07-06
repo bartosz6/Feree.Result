@@ -15,7 +15,7 @@ namespace Feree.ResultType.Converters
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ValueTask<IResult<T>> AsResultAsync<T>(this T @object) => 
-           new ValueTask<IResult<T>>(ResultFactory.CreateSuccess(@object));
+           new(ResultFactory.CreateSuccess(@object));
 
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
